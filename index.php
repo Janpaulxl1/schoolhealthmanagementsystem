@@ -9,11 +9,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $id = $_POST['ID'] ?? '';
 $password = $_POST['password'] ?? '';
 
-$host = $_ENV['MYSQLHOST'];
-$db   = $_ENV['MYSQLDATABASE'];
-$user = $_ENV['MYSQLUSER'];
-$pass = $_ENV['MYSQLPASSWORD'];
-$port = $_ENV['MYSQLPORT'] ?? 3306;
+$host = getenv("MYSQLHOST") ?: getenv("DB_HOST");
+$port = getenv("MYSQLPORT") ?: getenv("DB_PORT") ?: 3306;
+$user = getenv("MYSQLUSER") ?: getenv("DB_USER");
+$pass = getenv("MYSQLPASSWORD") ?: getenv("DB_PASS");
+$db   = getenv("MYSQLDATABASE") ?: getenv("DB_NAME");
 
 try {
    $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
