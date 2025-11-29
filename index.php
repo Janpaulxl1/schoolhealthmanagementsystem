@@ -32,7 +32,7 @@ try {
         $_SESSION['username'] = $user['name'];
         $_SESSION['role'] = $user['role_name'];
 
-       
+
         if ($user['role_name'] === 'nurse') {
             $update_stmt = $pdo->prepare("UPDATE users SET last_active = NOW(), last_logout = NULL WHERE id = ?");
             $update_stmt->execute([$user['id']]);
@@ -42,6 +42,8 @@ try {
             header("Location: admin.php");
             exit;
         }
+    } else {
+        echo "<script>alert('User not found or password incorrect for ID: $id');</script>";
     }
 
     $stmt = $pdo->prepare("SELECT * FROM students WHERE student_id = ?");
@@ -87,6 +89,6 @@ try {
     echo "<script>alert('Invalid ID or password.'); window.location.href = 'login.html';</script>";
 
 } catch (PDOException $e) {
-    echo "Database error: " . $e->getMessage();
+    echo "<script>alert('Database error: " . addslashes($e->getMessage()) . "'); window.location.href = 'login.html';</script>";
 }
 ?>
