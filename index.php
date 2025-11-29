@@ -9,13 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 $id = $_POST['ID'] ?? '';
 $password = $_POST['password'] ?? '';
 
-$host = 'localhost';
-$db = 'capstone1';
-$user = 'root';
-$pass = '';
+$host = $_ENV['MYSQLHOST'];
+$db   = $_ENV['MYSQLDATABASE'];
+$user = $_ENV['MYSQLUSER'];
+$pass = $_ENV['MYSQLPASSWORD'];
+$port = $_ENV['MYSQLPORT'] ?? 3306;
 
 try {
-    $pdo = new PDO("mysql:host=$host;dbname=$db", $user, $pass);
+   $pdo = new PDO("mysql:host=$host;port=$port;dbname=$db;charset=utf8", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     
