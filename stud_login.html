@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>School Health Clinic Login</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-b from-yellow-400 to-red-700">
+
+  <div class="bg-gradient-to-b from-[#fca311] to-[#b32f1b] w-full max-w-sm mx-4 rounded-xl p-6 flex flex-col items-center shadow-2xl">
+
+   
+    <img src="images/Logo.png" alt="Logo" class="w-40 h-35  ">
+
+   
+    <h1 class="text-white text-xl text-center font-bold leading-tight mb-1">School Health</h1>
+    <h1 class="text-white text-xl text-center font-bold leading-tight mb-4">Clinic<br>Management System</h1>
+
+    
+    <div class="bg-[#c0392b] w-full p-5 rounded-lg shadow-lg">
+      <h2 class="text-white text-lg font-semibold mb-4 text-center">LET'S GET YOU LOG IN</h2>
+
+      <form action="your_backend_login.php" method="POST" class="space-y-4">
+        <input type="text" name="student_id" placeholder="Student ID" class="w-full px-4 py-2 rounded-lg bg-white text-black focus:outline-none" required>
+
+        <input type="password" name="password" placeholder="Password" class="w-full px-4 py-2 rounded-lg bg-white text-black focus:outline-none" required>
+
+        <div class="flex justify-between items-center text-sm text-white">
+          <label class="flex items-center space-x-2">
+            <input type="checkbox" class="form-checkbox">
+            <span>REMEMBER ME</span>
+          </label>
+        </div>
+
+        <button type="submit" class="w-full bg-yellow-500 text-black font-bold py-2 rounded-lg hover:bg-yellow-400 mt-2">
+          Log In
+        </button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

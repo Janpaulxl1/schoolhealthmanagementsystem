@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Log In - School Clinic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poltawski+Nowy:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(to bottom, #E4A73E, #DD442D,#BB1D1D);
+      color: white;
+      margin: 0;
+      font-family: 'Poltawski Nowy', serif;
+    }
+
+    .container {
+      flex-grow: 1; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .main-content {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .logo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .reset-link {
+      margin-top: 1rem;
+      font-size: 1rem;
+      color: #f0f0f0;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .reset-link:hover {
+      color: #fde047;
+    }
+
+    .logo-area img {
+      width: 260px;
+      height: auto;
+    }
+
+    .logo-text {
+      font-weight: bold;
+      font-size: 2.8rem;
+      line-height: 1.4;
+    }
+
+    .form-area {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .welcome-text {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+      .login-card {
+      background-color: rgba(255, 255, 255, 0.15);
+      border-radius: 1rem;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      width: 100%;
+      max-width: 600px;
+      min-height: 500px;
+      }
+
+
+    .login-card h3 {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+      width: 100%;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+      color: #f0f0f0;
+      font-size: 1rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 0.5rem;
+      color: #333;
+      font-size: 1rem;
+    }
+
+    .remember-forgot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.2rem;
+      color: #ddd;
+      font-size: 0.95rem;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+    }
+
+    .remember-me input[type="checkbox"] {
+      margin-right: 0.4rem;
+    }
+
+    .login-button {
+      background-color: #f1d669;
+      color: #333;
+      width: 100%;
+      padding: 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .login-button:hover {
+      background-color: #fde047;
+    }
+
+    .hamburger {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      cursor: pointer;
+      z-index: 1001;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .hamburger div {
+      width: 15px;
+      height: 2px;
+      background-color: white;
+      transition: all 0.3s ease;
+    }
+
+    .hamburger.open {
+      transform: scale(0.8);
+      border: 2px solid white;
+      border-radius: 5px;
+      padding: 5px;
+    }
+
+    .hamburger.open div:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.open div:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.open div:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+
+    .side-menu {
+      position: fixed;
+      top: 60px;
+      left: -200px;
+      width: 200px;
+      height: auto;
+      transition: left 0.3s ease;
+      z-index: 1000;
+      padding: 20px;
+    }
+
+    .side-menu.open {
+      left: 0;
+    }
+
+    .side-menu a {
+      display: block;
+      color: #333;
+      text-decoration: none;
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #333;
+      transition: background-color 0.3s ease;
+    }
+
+    .side-menu a:hover {
+      background-color: rgba(241, 214, 105, 0.3);
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 999;
+    }
+
+    .overlay.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-area {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .form-area {
+        width: 100%;
+      }
+
+      .login-card {
+        max-width: 90%;
+      }
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('sideMenu');
+      const overlay = document.getElementById('overlay');
+      const hamburger = document.querySelector('.hamburger');
+      menu.classList.toggle('open');
+      overlay.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    }
+
+    function closeMenu() {
+      const menu = document.getElementById('sideMenu');
+      const overlay = document.getElementById('overlay');
+      const hamburger = document.querySelector('.hamburger');
+      menu.classList.remove('open');
+      overlay.classList.remove('open');
+      hamburger.classList.remove('open');
+    }
+  </script>
+</head>
+<body>
+  <div class="hamburger" onclick="toggleMenu()">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <div class="side-menu" id="sideMenu">
+    <a href="reset_password.php" onclick="closeMenu()">Reset Password</a>
+  </div>
+  <div class="container">
+    <div class="main-content">
+      <div class="logo-area">
+        <img src="images/logo.png" alt="School Clinic Logo">
+        <div class="text-white logo-text">
+          <p>School Health</p>
+          <p>Clinic</p>
+          <p>Management</p>
+          <p>System</p>
+        </div>
+      </div>
+
+      
+      <div class="form-area">
+        <div class="login-card">
+          <h3>LET'S GET LOGGED IN</h3>
+          <form action="index.php" method="POST">
+            <div class="form-group">
+              <label for="ID">ID</label>
+              <input type="text" id="ID" name="ID" placeholder="Your ID" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" id="password" name="password" placeholder="Your password" required />
+            </div>
+            <div class="remember-forgot">
+              <div class="remember-me">
+                <input type="checkbox" id="remember" name="remember" />
+                <label for="remember">Remember me</label>
+              </div>
+            </div>
+            <button type="submit" class="login-button">Log In</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
